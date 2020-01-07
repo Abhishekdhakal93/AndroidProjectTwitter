@@ -87,9 +87,12 @@ public class Camera extends AppCompatActivity {
                 Toast.makeText( this, "Please select an image ", Toast.LENGTH_SHORT ).show();
             }
         }
-        Uri uri = data.getData();
+       try{ Uri uri = data.getData();
         iv_profile.setImageURI( uri );
-        imagePath = getRealPathFromUri( uri );
+        imagePath = getRealPathFromUri( uri );}
+       catch (Exception e){
+           e.printStackTrace();
+       }
     }
 
     private String getRealPathFromUri(Uri uri) {
@@ -162,7 +165,6 @@ public class Camera extends AppCompatActivity {
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString("username",u.getEmail());
         editor.putString("password",u.getPassword());
-        Toast.makeText(this, "saved user", Toast.LENGTH_SHORT).show();
         editor.commit();
 
     }

@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
-    <TextView
-        android:id="@+id/Tx_sp"
+    <Button
+        android:id="@+id/Tx_pp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:gravity="right"
-        android:textColor="#00acee"
+        android:background="#00acee"
+        android:textColor="#ffffff"
         android:text=" Signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.562"
@@ -43,7 +43,7 @@
         android:src="@drawable/ic_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.769"
-        app:layout_constraintStart_toEndOf="@+id/Tx_sp"
+        app:layout_constraintStart_toEndOf="@+id/Tx_pp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -133,6 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#c0c0c0"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_bias="0.964"

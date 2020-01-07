@@ -22,7 +22,7 @@ import com.shresthagaurav.androidprojecttwitter.strictMode.StrictModeClass;
 public class Login_activity extends AppCompatActivity {
     EditText et_email, et_password;
     ImageButton ib_show_P;
-    TextView Tx_sp;
+    Button Tx_sp;
     Button btn_login;
     public static String Token = "";
     int i = 0;
@@ -31,7 +31,7 @@ public class Login_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login_activity );
-        Tx_sp = findViewById( R.id.Tx_sp );
+        Tx_sp = findViewById( R.id.Tx_pp );
         et_email = findViewById( R.id.login_email );
         et_password = findViewById( R.id.login_password );
         ib_show_P = findViewById( R.id.btn_SP );
@@ -43,15 +43,9 @@ public class Login_activity extends AppCompatActivity {
             password=bundle.getString( "password" );
             User user = new User( username, password );
             login( user );
-            return;
+
         }
-        Tx_sp.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent back = new Intent( Login_activity.this, MainActivity.class );
-                startActivity( back );
-            }
-        } );
+
         ib_show_P.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +58,13 @@ public class Login_activity extends AppCompatActivity {
                     i = 0;
                 }
 
+            }
+        } );
+        Tx_sp.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent back = new Intent( Login_activity.this, SignUP.class );
+                startActivity( back );
             }
         } );
         btn_login.setOnClickListener( new View.OnClickListener() {
@@ -110,5 +111,11 @@ public class Login_activity extends AppCompatActivity {
         //Toast.makeText( this, "saved user", Toast.LENGTH_SHORT ).show();
         editor.commit();
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back=new Intent( Login_activity.this,MainActivity.class );
+        startActivity( back );
     }
 }

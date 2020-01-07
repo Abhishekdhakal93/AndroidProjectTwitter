@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
->
 
     <TextView
         android:id="@+id/textView3"
@@ -90,14 +89,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_weight="1"
+            android:layout_marginRight="1dp"
             android:text="for more details about these setting,visit the" />
 
         <TextView
             android:id="@+id/Help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:paddingRight="10dp"
             android:text="Help Center."
             android:textColor="@color/colorTwitter" />

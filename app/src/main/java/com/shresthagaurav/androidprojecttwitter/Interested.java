@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,10 +36,7 @@ TextView textView;
         interestsList.add( new DataSet("News", "Weather", "History", "Politics","Health","game"));
         interestsList.add( new DataSet("Music", "Pop", "Hip-Hop", "Country","Rock","game"));
         interestsList.add( new DataSet("Country", "Nepal", "China", "Japan","Korea","game"));
-        interestsList.add( new DataSet("Sport", "NFL", "NBA", "MLB","Soccer","NHL"));
-        interestsList.add( new DataSet("News", "Weather", "History", "Politics","Health","game"));
-        interestsList.add( new DataSet("Music", "Pop", "Hip-Hop", "Country","Classic Rock","game"));
-        interestsList.add( new DataSet("Country", "Nepal", "China", "Japan","Korea","game"));
+
         InterestsAdapter interestsAdapter = new InterestsAdapter(this, interestsList);
         recyclerView.setAdapter( interestsAdapter );
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,7 +61,17 @@ TextView textView;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent back=new Intent( Interested.this,MainActivity.class );
-        startActivity( back );
+//        Intent back=new Intent( YourSelf.this,MainActivity.class );
+//        startActivity( back );
+        triggerRebirth( this );
     }
+    public static void triggerRebirth(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+        ComponentName componentName = intent.getComponent();
+        Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+        context.startActivity(mainIntent);
+        Runtime.getRuntime().exit(0);
+    }
+
 }

@@ -47,11 +47,11 @@
 
     <EditText
         android:id="@+id/SN_usernmae"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/colorTwitter"
         android:ems="15"
         android:hint="Username"
@@ -60,7 +60,7 @@
         android:singleLine="true"
         android:textAlignment="textStart"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:layout_editor_absoluteX="24dp" />
+        tools:layout_editor_absoluteX="20dp" />
 
     <ImageView
         android:id="@+id/SN_userP"
@@ -130,7 +130,10 @@
         android:layout_height="3dp"
         android:layout_marginTop="256dp"
         android:background="#c0c0c0"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_FS_signup"
         app:layout_constraintTop_toBottomOf="@+id/SN_pass_error"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
