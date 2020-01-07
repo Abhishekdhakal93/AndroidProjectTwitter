@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,7 +31,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Url;
 
 public class Camera extends AppCompatActivity {
     ImageView iv_profile;
@@ -127,7 +127,7 @@ public class Camera extends AppCompatActivity {
     }
 
     private void signUp() {
-        User users = new User( email, password, username, imageName );
+        final User users = new User( email, password, username, imageName );
 
         ApiClass usersAPI = new ApiClass();
         final Call<SignUpResponse> signUpCall = usersAPI.calls().register( users );
@@ -142,6 +142,7 @@ public class Camera extends AppCompatActivity {
                 SignUpResponse signUpResponse = response.body();
                 token = signUpResponse.getToken();
                 Log.d( "token", token );
+                Store( users );
                 Intent intent = new Intent( Camera.this, YourSelf.class );
                 intent.putExtra( "token", token );
                 startActivity( intent );
@@ -153,6 +154,16 @@ public class Camera extends AppCompatActivity {
                 Toast.makeText( Camera.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT ).show();
             }
         } );
+
+    }
+    void Store( User u){
+
+        SharedPreferences sharedPreferences=getSharedPreferences("User",MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("username",u.getEmail());
+        editor.putString("password",u.getPassword());
+        Toast.makeText(this, "saved user", Toast.LENGTH_SHORT).show();
+        editor.commit();
 
     }
 }

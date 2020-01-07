@@ -1,6 +1,7 @@
 package com.shresthagaurav.androidprojecttwitter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -23,22 +24,31 @@ public class Login_activity extends AppCompatActivity {
     ImageButton ib_show_P;
     TextView Tx_sp;
     Button btn_login;
-    public static String Token="";
+    public static String Token = "";
     int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login_activity );
-        Tx_sp=findViewById( R.id.Tx_sp );
+        Tx_sp = findViewById( R.id.Tx_sp );
         et_email = findViewById( R.id.login_email );
         et_password = findViewById( R.id.login_password );
         ib_show_P = findViewById( R.id.btn_SP );
         btn_login = findViewById( R.id.btn_login );
+        Bundle bundle=getIntent().getExtras();
+        if(bundle!=null){
+            String username,password;
+            username=bundle.getString( "email" );
+            password=bundle.getString( "password" );
+            User user = new User( username, password );
+            login( user );
+            return;
+        }
         Tx_sp.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back=new Intent( Login_activity.this,MainActivity.class );
+                Intent back = new Intent( Login_activity.this, MainActivity.class );
                 startActivity( back );
             }
         } );
@@ -64,7 +74,7 @@ public class Login_activity extends AppCompatActivity {
                     if (!TextUtils.isEmpty( et_password.getText().toString() )) {
                         User u = new User( et_email.getText().toString(),
                                 et_password.getText().toString() );
-login( u );
+                        login( u );
                     } else {
                         et_password.setError( "empty" );
                     }
@@ -74,18 +84,31 @@ login( u );
             }
         } );
     }
-    private void login(User u) {
+
+    public boolean login(User u) {
         LoginBLL loginBLL = new LoginBLL();
         StrictModeClass.StrictMode();
-        if (loginBLL.checkUser(u.getEmail(), u.getPassword())) {
-            Intent intent = new Intent( Login_activity.this,DashBoard.class );
-          Token= loginBLL.Token;
+        if (loginBLL.checkUser( u.getEmail(), u.getPassword() )) {
+            Store( u );
+            Intent intent = new Intent( Login_activity.this, DashBoard.class );
+            Token = loginBLL.Token;
             startActivity( intent );
             //Toast.makeText( this, "welcome "+loginBLL.Token,Toast.LENGTH_SHORT ).show();
-
-        } else {
-            Toast.makeText(this, "Either username or password is incorrect", Toast.LENGTH_SHORT).show();
-           // etUsername.requestFocus();
+            return true;
         }
+        Toast.makeText( this, "Either username or password is incorrect", Toast.LENGTH_SHORT ).show();
+        return false;
+
+    }
+
+    void Store(User u) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences( "User", MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString( "username", u.getEmail() );
+        editor.putString( "password", u.getPassword() );
+        //Toast.makeText( this, "saved user", Toast.LENGTH_SHORT ).show();
+        editor.commit();
+
     }
 }

@@ -45,10 +45,17 @@ public class TweetAdapter  extends RecyclerView.Adapter<TweetAdapter.TweetList> 
         holder.txt_head.setText( tm.getHeadingtext() );
         holder.txt_body.setText( tm.getMessagetext() );
         StrictModeClass.StrictMode();
-        String imgPath = imagePath +  tm.getImage();
+        String imgPath = imagePath +  tm.getMessageimage();
         try {
             URL url = new URL(imgPath);
             holder.m_img.setImageBitmap( BitmapFactory.decodeStream((InputStream) url.getContent()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String imgPath2 = imagePath +  tm.getUserimage();
+        try {
+            URL url = new URL(imgPath2);
+            holder.p_img.setImageBitmap( BitmapFactory.decodeStream((InputStream) url.getContent()));
         } catch (Exception e) {
             e.printStackTrace();
         }

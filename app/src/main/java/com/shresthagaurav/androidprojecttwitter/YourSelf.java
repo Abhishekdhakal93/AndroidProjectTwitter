@@ -43,4 +43,10 @@ EditText et_bio;
         Intent intent = new Intent( YourSelf.this,Interested.class );
         startActivity( intent );
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back=new Intent( YourSelf.this,MainActivity.class );
+        startActivity( back );
+    }
 }

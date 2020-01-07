@@ -35,8 +35,8 @@
         tools:layout="@layout/fragment_share" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/logout"
         android:name="com.shresthagaurav.androidprojecttwitter.ui.send.SendFragment"
-        android:label="@string/menu_send"
+        android:label="Log Out"
         tools:layout="@layout/fragment_send" />
 </navigation>

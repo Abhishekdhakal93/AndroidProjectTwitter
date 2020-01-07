@@ -17,8 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Interested"/>
-        <activity android:name=".YourSelf" />
+        <activity android:name=".Interested"
+            android:noHistory="true"/>
+        <activity android:name=".YourSelf"
+            android:noHistory="true"/>
         <activity
             android:name=".DashBoard"
             android:label="title_activity_dash_board"
@@ -26,9 +28,11 @@
         <activity android:name=".Customize" />
         <activity android:name=".Camera" />
         <activity android:name=".SignUP" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:noHistory="true"/>
         <activity android:name=".Login_activity" />
-        <activity android:name=".Password" />
+        <activity android:name=".Password"
+           />
         <activity android:name=".Verification" />
         <activity android:name=".Final_Step_signUP" />
         <activity android:name=".SplashScreen">

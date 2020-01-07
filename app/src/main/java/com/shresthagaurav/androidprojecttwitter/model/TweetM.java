@@ -3,12 +3,14 @@ package com.shresthagaurav.androidprojecttwitter.model;
 public class TweetM {
     String headingtext;
     String messagetext;
-    String image;
+    String userimage;
+    String messageimage;
 
-    public TweetM(String headingtext, String messagetext, String image) {
+    public TweetM(String headingtext, String messagetext, String userimage, String messageimage) {
         this.headingtext = headingtext;
         this.messagetext = messagetext;
-        this.image = image;
+        this.userimage = userimage;
+        this.messageimage = messageimage;
     }
 
     public String getHeadingtext() {
@@ -19,7 +21,11 @@ public class TweetM {
         return messagetext;
     }
 
-    public String getImage() {
-        return image;
+    public String getUserimage() {
+        return userimage;
+    }
+
+    public String getMessageimage() {
+        return messageimage;
     }
 }

@@ -1,5 +1,6 @@
 package com.shresthagaurav.androidprojecttwitter;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
@@ -50,6 +51,7 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_dash_board );
         Toolbar toolbar = findViewById( R.id.toolbar );
+        toolbar.setTitle( "Home" );
         setSupportActionBar( toolbar );
         loadCurrentUser();
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
@@ -105,7 +107,7 @@ public class DashBoard extends AppCompatActivity {
                     return;
                 }
                 UserInfo userInfo= response.body();
-                Toast.makeText( DashBoard.this, " "+userInfo.get_id(), Toast.LENGTH_SHORT ).show();
+               // Toast.makeText( DashBoard.this, " "+userInfo.get_id(), Toast.LENGTH_SHORT ).show();
                 tx_nmae.setText( userInfo.getUsername() );
                 txt_email.setText( userInfo.getEmail() );
               String imgPath = imagePath +  userInfo.getImage();
@@ -127,4 +129,12 @@ public class DashBoard extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back=new Intent( DashBoard.this,MainActivity.class );
+        startActivity( back );
+    }
+
 }

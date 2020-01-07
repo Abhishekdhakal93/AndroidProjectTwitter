@@ -58,4 +58,10 @@ TextView textView;
         Intent intent = new Intent( Interested.this,DashBoard.class );
         startActivity( intent );
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back=new Intent( Interested.this,MainActivity.class );
+        startActivity( back );
+    }
 }

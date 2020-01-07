@@ -28,8 +28,8 @@
 
                 android:title="Setting and privacy" />
             <item
-
-                android:title="Help Center" />
+                android:id="@+id/logout"
+                android:title="Log out" />
         </menu>
     </item>
 </menu>
